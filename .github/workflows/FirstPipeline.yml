@@ -18,13 +18,9 @@ jobs:
       matrix:
         os: [macos-14.6]
     
-    steps:
-    - uses: actions/checkout@v4
-    # Sanity check to make sure we use a valid device in the next step
-    - name: List available devices
-      run: xcrun simctl list devicetypes 
-    #generic/platform=iOS is sufficient for just building, - but need to specify concrete destination for tests
-    - name: Build on simulator
+    steps: 
+      # step 1, use Marketplace action called Checkout@v2, to checkout the code
+    - uses: actions/checkout@v4 #'uses' keyword launches the Marketplace action
+      # step 2, verbosely build the package using the `swift` CLI
+    - name: Build
       run: swift build -v
-#xcodebuild test -scheme EventBus -destination 'platform=iOS Simulator,name=iPhone 17 Pro' #or any other name from the list of sim devices
-    
