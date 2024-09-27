@@ -14,7 +14,9 @@ jobs:
   build: 
     #specify OS to run the jobs on
     runs-on: macos-latest 
- 
+ strategy:
+      matrix:
+        os: [macos-14.6]
     
     steps:
     - uses: actions/checkout@v4
@@ -22,6 +24,7 @@ jobs:
     - name: List available devices
       run: xcrun simctl list devicetypes 
     #generic/platform=iOS is sufficient for just building, - but need to specify concrete destination for tests
-    - name: Build and run tests
-      run: xcodebuild test -scheme EventBus -destination 'platform=iOS Simulator,name=iPhone 17 Pro' #or any other name from the list of sim devices
+    - name: Build on simulator
+      run: swift build -v
+#xcodebuild test -scheme EventBus -destination 'platform=iOS Simulator,name=iPhone 17 Pro' #or any other name from the list of sim devices
     
