@@ -12,10 +12,27 @@ on:
 jobs:
   build:
 
-    runs-on: macos-14 
-
+# runs-on: macos-14 
+strategy:
+      matrix:
+        # Full set of Firebase-Package tests only run on iOS. Run subset on other platforms.
+        # visionOS isn't buildable from here (even with Firestore source) because the test
+        # targets need Analytics.
+        target: [macOS]
+        os: [macos-14]
+        include:
+          - os: macos-14
+            xcode: Xcode_16
+          - os: macos-14
+            xcode: Xcode_15.3
+    runs-on: ${{ matrix.os }}
+    
     steps:
     - uses: actions/checkout@v4
-    - name: Build and test ( iOS 15.0)
-      run: swift build -v
- 
+    # Sanity check to make sure we use a valid device in the next step
+    - name: List available devices
+      run: xcrun simctl list devicetypes 
+    #generic/platform=iOS is sufficient for just building, - but need to specify concrete destination for tests
+    - name: Build and run tests
+      run: xcodebuild test -scheme EventBus -destination 'platform=iOS Simulator,name=iPhone 17 Pro' #or any other name from the list of sim devices
+    
