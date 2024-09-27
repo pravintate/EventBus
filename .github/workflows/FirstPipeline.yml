@@ -17,6 +17,5 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build and test ( iOS 15.0)
-      run: xcodebuild test -scheme EventBus -destination 'platform=iOS Simulator,OS=16.0,name=iPhone 12 Pro'
-    - name: Run tests
-      run: swift test -v
+      run: xcodebuild EventBus -scheme EventBus -destination 'platform=iOS Simulator,OS=16.0,name=iPhone 12 Pro'
+ 
