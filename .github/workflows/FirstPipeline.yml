@@ -10,22 +10,11 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
-# runs-on: macos-14 
-strategy:
-      matrix:
-        # Full set of Firebase-Package tests only run on iOS. Run subset on other platforms.
-        # visionOS isn't buildable from here (even with Firestore source) because the test
-        # targets need Analytics.
-        target: [macOS]
-        os: [macos-14]
-        include:
-          - os: macos-14
-            xcode: Xcode_16
-          - os: macos-14
-            xcode: Xcode_15.3
-    runs-on: ${{ matrix.os }}
+  #the only job in the list, named `build`
+  build: 
+    #specify OS to run the jobs on
+    runs-on: macos-latest 
+ 
     
     steps:
     - uses: actions/checkout@v4
