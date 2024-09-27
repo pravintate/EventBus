@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+
 public final class EventBus<ComponentType: BusComponent, EventType: BusEvent>: EventBusInterface {
     public typealias Event = EventType
     public typealias Component = ComponentType
