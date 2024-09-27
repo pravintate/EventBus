@@ -17,5 +17,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build and test ( iOS 15.0)
+      runs-on: macos-latest
       run: swift build -v
  
