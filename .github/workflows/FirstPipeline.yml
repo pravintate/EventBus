@@ -20,5 +20,7 @@ jobs:
       run: xcode-select -p
     - name: os name
       run: sw_vers
-      #run: xcodebuild EventBus -scheme EventBus -destination 'platform=iOS Simulator,OS=16.0,name=iPhone 12 Pro'
+    - name: Run on simulator
+      run: xcrun simctl list
+#xcodebuild EventBus -scheme EventBus -destination 'platform=iOS Simulator,OS=17.0,name=iPhone 14 Pro'
  
