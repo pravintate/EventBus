@@ -16,6 +16,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+      - name: swiftLint job
+        uses: norio-nomura/action-swiftlint@3.2.1
       - name: Build Package
         run: swift build
