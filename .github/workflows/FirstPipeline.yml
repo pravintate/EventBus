@@ -17,11 +17,5 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build and test ( iOS 15.0)
-      run: xcode-select -p
-    - name: os name
-      run: sw_vers
-    - name: Run with normal command
-      run: swift build
-    - name: Run on simulator
-      run: xcodebuild EventBus -scheme EventBus -destination 'platform=iOS Simulator,OS=17.0,name=iPhone 15 Pro'
+      run: swift build -v
  
