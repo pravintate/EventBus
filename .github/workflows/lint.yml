@@ -13,9 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build Package
-        run: swift build
-
       - name: Run SwiftLint
         run: |
           # Install SwiftLint
@@ -23,3 +20,6 @@ jobs:
 
           # Run SwiftLint
           swiftlint lint
+
+      - name: Build Package
+        run: swift build
