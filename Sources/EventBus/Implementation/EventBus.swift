@@ -31,8 +31,8 @@ public final class EventBus<ComponentType: BusComponent, EventType: BusEvent>: E
     }
 
     @discardableResult
-    public func subscribe(for component: ComponentType, 
-                   _ event: @escaping (EventType) -> Void) -> AnyPublisher<EventType, Never> {
+    public func subscribe(for component: ComponentType,
+                          _ event: @escaping (EventType) -> Void) -> AnyPublisher<EventType, Never> {
         var publisher = PassthroughSubject<EventType, Failure>()
 
         if let currentPublisher = store[component] {
@@ -49,4 +49,3 @@ public final class EventBus<ComponentType: BusComponent, EventType: BusEvent>: E
         return publisher.eraseToAnyPublisher()
     }
 }
-
