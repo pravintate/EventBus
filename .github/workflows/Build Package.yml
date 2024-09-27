@@ -1,0 +1,21 @@
+name: Build Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macOS-latest
+
+    strategy:
+      matrix:
+        os: [macos-10.15]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Package
+        run: swift build
